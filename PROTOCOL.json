@@ -2233,36 +2233,23 @@
 			"id": 128,
 			"parameters":
 			{
-				"pgm":
+				"set_tally":
 				{
 					"group_id": 128,
 					"group_name": "RGB Tally",
 					"group_key": "rgb_tally",
 					"id": 0,
-					"name": "PGM",
-					"key": "pgm",
+					"name": "Set tally",
+					"key": "set_tally",
 					"data_type": "int8",
 					"interpretation": "Custom: 0 = off, 1 = pgm, 2 = pvw",
 					"props":
 					{
-						"off":
+						"default":
 						{
-							"name": "Off",
-							"key": "off",
-							"max": 2,
-							"value": null
-						},
-						"pgm":
-						{
-							"name": "Pgm",
-							"key": "pgm",
-							"max": 2,
-							"value": null
-						},
-						"pvw":
-						{
-							"name": "Pvw",
-							"key": "pvw",
+							"name": "default",
+							"key": "default",
+							"min": 2,
 							"max": 2,
 							"value": null
 						}
@@ -2284,6 +2271,7 @@
 						{
 							"name": "Red",
 							"key": "red",
+							"min": 0,
 							"max": 255,
 							"value": null
 						},
@@ -2291,6 +2279,7 @@
 						{
 							"name": "Green",
 							"key": "green",
+							"min": 0,
 							"max": 255,
 							"value": null
 						},
@@ -2298,6 +2287,7 @@
 						{
 							"name": "Blue",
 							"key": "blue",
+							"min": 0,
 							"max": 255,
 							"value": null
 						},
@@ -2305,6 +2295,7 @@
 						{
 							"name": "Luma",
 							"key": "luma",
+							"min": 0,
 							"max": 255,
 							"value": null
 						}
@@ -2319,6 +2310,28 @@
 			"id": 129,
 			"parameters":
 			{
+				"notify":
+				{
+					"group_id": 129,
+					"group_name": "Bluetooth",
+					"group_key": "bluetooth",
+					"id": 0,
+					"name": "Notify",
+					"key": "notify",
+					"data_type": "int16",
+					"interpretation": "Custom: 0 = disconnected, 1 = connected, 2 = connecting, 3 = need passcode, 4 = need passcode, 5 = timeout",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 0,
+							"max": 127,
+							"value": null
+						}
+					}
+				},
 				"disconnect":
 				{
 					"group_id": 129,
@@ -2368,6 +2381,8 @@
 						{
 							"name": "Default",
 							"key": "default",
+							"min": 0,
+							"max": 999999,
 							"value": null
 						}
 					}
