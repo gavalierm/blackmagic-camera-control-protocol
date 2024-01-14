@@ -1,0 +1,2378 @@
+{
+	"disclaimer": "This is auto generated PROTOCOL. Data have to be revised manually. Based on https://documents.blackmagicdesign.com/DeveloperManuals/BlackmagicCameraControl.pdf",
+	"unofficial_custom_groups":
+	{
+		"rgb_tally": "See group 128",
+		"bluetooth": "See group 129"
+	},
+	"structure":
+	{
+		"destination": 0,
+		"commandLength": 1,
+		"commandId": 2,
+		"source": 3,
+		"category": 4,
+		"parameter": 5,
+		"dataType": 6,
+		"operationType": 7,
+		"payloadStart": 8
+	},
+	"commands":
+	{
+		"changeConfiguration": 0
+	},
+	"dataTypes":
+	{
+		"void": 0,
+		"boolean": 0,
+		"int8": 1,
+		"int16": 2,
+		"int32": 3,
+		"int64": 4,
+		"string": 5,
+		"fixed16": 128
+	},
+	"operationTypes":
+	{
+		"assignValue": 0,
+		"offsetValue": 1,
+		"statusUpdate": 2
+	},
+	"ccuPacket":
+	{
+		"packetSizeMin": 8,
+		"packetSizeMax": 64,
+		"packetHeaderSize": 4,
+		"commandHeaderSize": 4,
+		"payloadOffset": 8,
+		"broadcastDestination": 255,
+		"lensAperture_NoLens": -32768,
+		"operationType": 7,
+		"payloadStart": 8
+	},
+	"bluetooth_services": [
+	{
+		"name": "Device Information Service",
+		"key": "device_information_service",
+		"uuid": "0000180a-0000-1000-8000-00805f9b34fb",
+		"characteristics": [
+		{
+			"name": "Camera Manufacturer",
+			"key": "camera_manufacturer",
+			"uuid": "00002a29-0000-1000-8000-00805f9b34fb",
+			"description": "Read the name of the manufacturer (always “Blackmagic Design”)"
+		},
+		{
+			"name": "Camera Model",
+			"key": "camera_model",
+			"uuid": "00002a24-0000-1000-8000-00805f9b34fb",
+			"description": "Read the name of the camera model (eg. “URSA Mini Pro”)"
+		}]
+	},
+	{
+		"name": "Blackmagic Camera Service",
+		"key": "blackmagic_camera_service",
+		"uuid": "291d567a-6d75-11e6-8b77-86f30ca893d3",
+		"characteristics": [
+		{
+			"name": "Outgoing Camera Control",
+			"key": "outgoing_camera_control",
+			"uuid": "5dd3465f-1aee-4299-8493-d2eca2f8e1bb",
+			"description": "Send Camera Control messages"
+		},
+		{
+			"name": "Incoming Camera Control",
+			"key": "incoming_camera_control",
+			"uuid": "b864e140-76a0-416a-bf30-5876504537d9",
+			"description": "Request notifications for this characteristic to receive Camera Control messages from the camera"
+		},
+		{
+			"name": "Timecode",
+			"key": "timecode",
+			"uuid": "6d8f2110-86f1-41bf-9afb-451d87e976c8",
+			"description": "Timecode (HH:MM:SS:mm) is represented by a 32-bit BCD number: (eg. 09:12:53:10 = 0x09125310)"
+		},
+		{
+			"name": "Camera Status",
+			"key": "camera_status",
+			"uuid": "7fe8691d-95dc-4fc5-8abd-ca74339b51b9",
+			"decription": "Request notifications for this characteristic to receive camera status updates.\n\nThe camera status is represented by flags contained in an 8-bit integer:\nNone = 0x00\nCamera Power On = 0x01\nConnected = 0x02\nPaired = 0x04\nVersions Verified = 0x08\nInitial Payload Received = 0x10\nCamera Ready = 0x20"
+		},
+		{
+			"name": "Device Name",
+			"key": "device_name",
+			"uuid": "ffac0c52-c9fb-41a0-b063-cc76282eb89c",
+			"decription": "Send a device name to the camera (max. 32 characters). The camera will display this name in the Bluetooth Setup Menu"
+		},
+		{
+			"name": "Protocol Version",
+			"key": "protocol_version",
+			"uuid": "8f1fd018-b508-456f-8f82-3d392bee2706",
+			"description": "Read this value to determine the camera’s supported CCU protocol version"
+		}]
+	}],
+	"groups":
+	{
+		"lens":
+		{
+			"name": "Lens",
+			"key": "lens",
+			"id": 0,
+			"parameters":
+			{
+				"focus":
+				{
+					"group_id": 0,
+					"group_name": "Lens",
+					"group_key": "lens",
+					"id": 0,
+					"name": "Focus",
+					"key": "focus",
+					"data_type": "fixed16",
+					"interpretation": "0.0 = near, 1.0 = far",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 0,
+							"max": 1,
+							"value": null
+						}
+					}
+				},
+				"instantaneous_autofocus":
+				{
+					"group_id": 0,
+					"group_name": "Lens",
+					"group_key": "lens",
+					"id": 1,
+					"name": "Instantaneous autofocus",
+					"key": "instantaneous_autofocus",
+					"data_type": "void",
+					"interpretation": "trigger instantaneous autofocus",
+					"props":
+					{}
+				},
+				"aperture_f_stop":
+				{
+					"group_id": 0,
+					"group_name": "Lens",
+					"group_key": "lens",
+					"id": 2,
+					"name": "Aperture (f-stop)",
+					"key": "aperture_f_stop",
+					"data_type": "fixed16",
+					"interpretation": "Aperture Value (where fnumber\n= sqrt(2^AV))",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": -1,
+							"max": 16,
+							"value": null
+						}
+					}
+				},
+				"aperture_normalised":
+				{
+					"group_id": 0,
+					"group_name": "Lens",
+					"group_key": "lens",
+					"id": 3,
+					"name": "Aperture (normalised)",
+					"key": "aperture_normalised",
+					"data_type": "fixed16",
+					"interpretation": "0.0 = smallest, 1.0 = largest",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 0,
+							"max": 1,
+							"value": null
+						}
+					}
+				},
+				"aperture_ordinal":
+				{
+					"group_id": 0,
+					"group_name": "Lens",
+					"group_key": "lens",
+					"id": 4,
+					"name": "Aperture (ordinal)",
+					"key": "aperture_ordinal",
+					"data_type": "int16",
+					"interpretation": "Steps through available aperture values from minimum (0) to maximum (n)",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 0,
+							"max": 256,
+							"value": null
+						}
+					}
+				},
+				"instantaneous_auto_aperture":
+				{
+					"group_id": 0,
+					"group_name": "Lens",
+					"group_key": "lens",
+					"id": 5,
+					"name": "Instantaneous auto aperture",
+					"key": "instantaneous_auto_aperture",
+					"data_type": "void",
+					"interpretation": "trigger instantaneous auto aperture",
+					"props":
+					{}
+				},
+				"optical_image_stabilisation":
+				{
+					"group_id": 0,
+					"group_name": "Lens",
+					"group_key": "lens",
+					"id": 6,
+					"name": "Optical image stabilisation",
+					"key": "optical_image_stabilisation",
+					"data_type": "boolean",
+					"interpretation": "true = enabled, false = disabled",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"value": null
+						}
+					}
+				},
+				"set_absolute_zoom_mm":
+				{
+					"group_id": 0,
+					"group_name": "Lens",
+					"group_key": "lens",
+					"id": 7,
+					"name": "Set absolute zoom (mm)",
+					"key": "set_absolute_zoom_mm",
+					"data_type": "int16",
+					"interpretation": "Move to specified focal length in mm, from minimum (0) to maximum (max)",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 0,
+							"max": 4000,
+							"value": null
+						}
+					}
+				},
+				"set_absolute_zoom_normalised":
+				{
+					"group_id": 0,
+					"group_name": "Lens",
+					"group_key": "lens",
+					"id": 8,
+					"name": "Set absolute zoom (normalised)",
+					"key": "set_absolute_zoom_normalised",
+					"data_type": "fixed16",
+					"interpretation": "Move to specified focal length:\n0.0 = wide, 1.0 = tele",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 0,
+							"max": 1,
+							"value": null
+						}
+					}
+				},
+				"set_continuous_zoom_speed":
+				{
+					"group_id": 0,
+					"group_name": "Lens",
+					"group_key": "lens",
+					"id": 9,
+					"name": "Set continuous zoom (speed)",
+					"key": "set_continuous_zoom_speed",
+					"data_type": "fixed16",
+					"interpretation": "Start/stop zooming at specified rate: -1.0 = zoom wider fast, 0.0\n= stop,\n+1 = zoom tele fast",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": -1,
+							"max": 1,
+							"value": null
+						}
+					}
+				}
+			}
+		},
+		"video":
+		{
+			"name": "Video",
+			"key": "video",
+			"id": 1,
+			"parameters":
+			{
+				"video_mode":
+				{
+					"group_id": 1,
+					"group_name": "Video",
+					"group_key": "video",
+					"id": 0,
+					"name": "Video mode",
+					"key": "video_mode",
+					"data_type": "int8",
+					"interpretation": "0 = YUV",
+					"props":
+					{
+						"frame_rate":
+						{
+							"name": "frame rate",
+							"key": "frame_rate",
+							"value": null
+						},
+						"m_rate":
+						{
+							"name": "M-rate",
+							"key": "m_rate",
+							"value": null
+						},
+						"dimensions":
+						{
+							"name": "dimensions",
+							"key": "dimensions",
+							"value": null
+						},
+						"interlaced":
+						{
+							"name": "interlaced",
+							"key": "interlaced",
+							"value": null
+						},
+						"color_space":
+						{
+							"name": "Color space",
+							"key": "color_space",
+							"value": null
+						}
+					}
+				},
+				"gain_up_to_camera_4_9":
+				{
+					"note": "128 is out of range int8, change to 127",
+					"group_id": 1,
+					"group_name": "Video",
+					"group_key": "video",
+					"id": 1,
+					"name": "Gain (up to Camera 4.9)",
+					"key": "gain_up_to_camera_4_9",
+					"data_type": "int8",
+					"interpretation": "1x, 2x, 4x, 8x, 16x, 32x, 64x, 128x\ngain",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 1,
+							"max": 127,
+							"value": null
+						}
+					}
+				},
+				"manual_white_balance":
+				{
+					"group_id": 1,
+					"group_name": "Video",
+					"group_key": "video",
+					"id": 2,
+					"name": "Manual White Balance",
+					"key": "manual_white_balance",
+					"data_type": "int16",
+					"interpretation": "tint",
+					"props":
+					{
+						"color_temp":
+						{
+							"name": "color temp",
+							"key": "color_temp",
+							"min": -50,
+							"max": 50,
+							"value": null
+						},
+						"tint":
+						{
+							"name": "tint",
+							"key": "tint",
+							"min": -50,
+							"max": 50,
+							"value": null
+						}
+					}
+				},
+				"set_auto_wb":
+				{
+					"group_id": 1,
+					"group_name": "Video",
+					"group_key": "video",
+					"id": 3,
+					"name": "Set auto WB",
+					"key": "set_auto_wb",
+					"data_type": "void",
+					"interpretation": "Calculate and set auto white balance",
+					"props":
+					{}
+				},
+				"restore_auto_wb":
+				{
+					"group_id": 1,
+					"group_name": "Video",
+					"group_key": "video",
+					"id": 4,
+					"name": "Restore auto WB",
+					"key": "restore_auto_wb",
+					"data_type": "void",
+					"interpretation": "Use latest auto white balance setting",
+					"props":
+					{}
+				},
+				"exposure_us":
+				{
+					"group_id": 1,
+					"group_name": "Video",
+					"group_key": "video",
+					"id": 5,
+					"name": "Exposure (us)",
+					"key": "exposure_us",
+					"data_type": "int32",
+					"interpretation": "time in us",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 1,
+							"max": 42000,
+							"value": null
+						}
+					}
+				},
+				"exposure_ordinal":
+				{
+					"group_id": 1,
+					"group_name": "Video",
+					"group_key": "video",
+					"id": 6,
+					"name": "Exposure (ordinal)",
+					"key": "exposure_ordinal",
+					"data_type": "int16",
+					"interpretation": "Steps through available exposure values from minimum\n(0) to maximum (n)",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 0,
+							"max": null,
+							"value": null
+						}
+					}
+				},
+				"dynamic_range_mode":
+				{
+					"group_id": 1,
+					"group_name": "Video",
+					"group_key": "video",
+					"id": 7,
+					"name": "Dynamic Range Mode",
+					"key": "dynamic_range_mode",
+					"data_type": "int8",
+					"interpretation": "0 = film, 1 = video,  2 = extended video",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 0,
+							"max": 2,
+							"value": null
+						}
+					}
+				},
+				"video_sharpening_level":
+				{
+					"group_id": 1,
+					"group_name": "Video",
+					"group_key": "video",
+					"id": 8,
+					"name": "Video sharpening level",
+					"key": "video_sharpening_level",
+					"data_type": "int8",
+					"interpretation": "0 = off, 1 = low, 2 = medium,\n3 = high",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 0,
+							"max": 3,
+							"value": null
+						}
+					}
+				},
+				"recording_format":
+				{
+					"group_id": 1,
+					"group_name": "Video",
+					"group_key": "video",
+					"id": 9,
+					"name": "Recording format",
+					"key": "recording_format",
+					"data_type": "int16",
+					"interpretation": "[4] = windowed mode",
+					"props":
+					{
+						"file_frame_rate":
+						{
+							"name": "file frame rate",
+							"key": "file_frame_rate",
+							"value": null
+						},
+						"sensor_frame_rate":
+						{
+							"name": "sensor frame rate",
+							"key": "sensor_frame_rate",
+							"value": null
+						},
+						"frame_width":
+						{
+							"name": "frame width",
+							"key": "frame_width",
+							"value": null
+						},
+						"frame_height":
+						{
+							"name": "frame height",
+							"key": "frame_height",
+							"value": null
+						},
+						"flags":
+						{
+							"name": "flags",
+							"key": "flags",
+							"value": null
+						}
+					}
+				},
+				"set_auto_exposure_mode":
+				{
+					"group_id": 1,
+					"group_name": "Video",
+					"group_key": "video",
+					"id": 10,
+					"name": "Set auto exposure mode",
+					"key": "set_auto_exposure_mode",
+					"data_type": "int8",
+					"interpretation": "0 = Manual Trigger, 1 = Iris,\n2 = Shutter, 3 = Iris + Shutter, 4 = Shutter + Iris",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 0,
+							"max": 4,
+							"value": null
+						}
+					}
+				},
+				"shutter_angle":
+				{
+					"group_id": 1,
+					"group_name": "Video",
+					"group_key": "video",
+					"id": 11,
+					"name": "Shutter angle",
+					"key": "shutter_angle",
+					"data_type": "int32",
+					"interpretation": "Shutter angle in degrees, multiplied by 100",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 100,
+							"max": 36000,
+							"value": null
+						}
+					}
+				},
+				"shutter_speed":
+				{
+					"group_id": 1,
+					"group_name": "Video",
+					"group_key": "video",
+					"id": 12,
+					"name": "Shutter speed",
+					"key": "shutter_speed",
+					"data_type": "int32",
+					"interpretation": "Shutter speed value as a fraction of 1, so 50 for 1/50th of a second",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 1,
+							"max": 5000,
+							"value": null
+						}
+					}
+				},
+				"gain":
+				{
+					"group_id": 1,
+					"group_name": "Video",
+					"group_key": "video",
+					"id": 13,
+					"name": "Gain",
+					"key": "gain",
+					"data_type": "int8",
+					"interpretation": "Gain in decibel (dB)",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": -128,
+							"max": 127,
+							"value": null
+						}
+					}
+				},
+				"iso":
+				{
+					"group_id": 1,
+					"group_name": "Video",
+					"group_key": "video",
+					"id": 14,
+					"name": "ISO",
+					"key": "iso",
+					"data_type": "int32",
+					"interpretation": "ISO value",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 0,
+							"max": 2147483647,
+							"value": null
+						}
+					}
+				},
+				"display_lut":
+				{
+					"group_id": 1,
+					"group_name": "Video",
+					"group_key": "video",
+					"id": 15,
+					"name": "Display LUT",
+					"key": "display_lut",
+					"data_type": "int8",
+					"interpretation": "0 = Not enabled, 1 = Enabled",
+					"props":
+					{
+						"selected_lut":
+						{
+							"name": "selected LUT",
+							"key": "selected_lut",
+							"value": null
+						},
+						"enabled_or_not":
+						{
+							"name": "enabled or not",
+							"key": "enabled_or_not",
+							"value": null
+						}
+					}
+				},
+				"nd_filter":
+				{
+					"group_id": 1,
+					"group_name": "Video",
+					"group_key": "video",
+					"id": 16,
+					"name": "ND Filter",
+					"key": "nd_filter",
+					"data_type": "fixed16",
+					"interpretation": "f-stop of ND filter to use",
+					"props":
+					{
+						"stops":
+						{
+							"name": "stops",
+							"key": "stops",
+							"min": 0,
+							"max": 16,
+							"value": null
+						}
+					}
+				}
+			}
+		},
+		"audio":
+		{
+			"name": "Audio",
+			"key": "audio",
+			"id": 2,
+			"parameters":
+			{
+				"mic_level":
+				{
+					"group_id": 2,
+					"group_name": "Audio",
+					"group_key": "audio",
+					"id": 0,
+					"name": "Mic level",
+					"key": "mic_level",
+					"data_type": "fixed16",
+					"interpretation": "0.0 = minimum, 1.0 = maximum",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 0,
+							"max": 1,
+							"value": null
+						}
+					}
+				},
+				"headphone_level":
+				{
+					"group_id": 2,
+					"group_name": "Audio",
+					"group_key": "audio",
+					"id": 1,
+					"name": "Headphone level",
+					"key": "headphone_level",
+					"data_type": "fixed16",
+					"interpretation": "0.0 = minimum, 1.0 = maximum",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 0.1,
+							"max": 1,
+							"value": null
+						}
+					}
+				},
+				"headphone_program_mix":
+				{
+					"group_id": 2,
+					"group_name": "Audio",
+					"group_key": "audio",
+					"id": 2,
+					"name": "Headphone program mix",
+					"key": "headphone_program_mix",
+					"data_type": "fixed16",
+					"interpretation": "0.0 = minimum, 1.0 = maximum",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 0.1,
+							"max": 1,
+							"value": null
+						}
+					}
+				},
+				"speaker_level":
+				{
+					"group_id": 2,
+					"group_name": "Audio",
+					"group_key": "audio",
+					"id": 3,
+					"name": "Speaker level",
+					"key": "speaker_level",
+					"data_type": "fixed16",
+					"interpretation": "0.0 = minimum, 1.0 = maximum",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 0.1,
+							"max": 1,
+							"value": null
+						}
+					}
+				},
+				"input_type":
+				{
+					"group_id": 2,
+					"group_name": "Audio",
+					"group_key": "audio",
+					"id": 4,
+					"name": "Input type",
+					"key": "input_type",
+					"data_type": "int8",
+					"interpretation": "0 = internal mic,\n1 = line level input,\n2 = low mic level input, 3 = high mic level input",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 0,
+							"max": 3,
+							"value": null
+						}
+					}
+				},
+				"input_levels":
+				{
+					"group_id": 2,
+					"group_name": "Audio",
+					"group_key": "audio",
+					"id": 5,
+					"name": "Input levels",
+					"key": "input_levels",
+					"data_type": "fixed16",
+					"interpretation": "0.0 = minimum, 1.0 = maximum",
+					"props":
+					{
+						"ch0":
+						{
+							"name": "ch0",
+							"key": "ch0",
+							"min": 0,
+							"max": 1,
+							"value": null
+						},
+						"ch1":
+						{
+							"name": "ch1",
+							"key": "ch1",
+							"min": 0,
+							"max": 1,
+							"value": null
+						}
+					}
+				},
+				"phantom_power":
+				{
+					"group_id": 2,
+					"group_name": "Audio",
+					"group_key": "audio",
+					"id": 6,
+					"name": "Phantom power",
+					"key": "phantom_power",
+					"data_type": "boolean",
+					"interpretation": "true = powered, false = not powered",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"value": null
+						}
+					}
+				}
+			}
+		},
+		"output":
+		{
+			"name": "Output",
+			"key": "output",
+			"id": 3,
+			"parameters":
+			{
+				"overlay_enables":
+				{
+					"group_id": 3,
+					"group_name": "Output",
+					"group_key": "output",
+					"id": 0,
+					"name": "Overlay enables",
+					"key": "overlay_enables",
+					"data_type": "uint16_bit_field",
+					"interpretation": "bit flags:\n[0] = display status,\n[1] = display frame guides\nSome cameras don't allow separate control of frame guides and status overlays.",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"value": null
+						}
+					}
+				},
+				"frame_guides_style_camera_3_x":
+				{
+					"group_id": 3,
+					"group_name": "Output",
+					"group_key": "output",
+					"id": 1,
+					"name": "Frame guides style (Camera 3.x)",
+					"key": "frame_guides_style_camera_3_x",
+					"data_type": "int8",
+					"interpretation": "0 = HDTV, 1 = 4:3, 2 = 2.4:1,\n3 = 2.39:1, 4 = 2.35:1,\n5 = 1.85:1, 6 = thirds",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 0,
+							"max": 8,
+							"value": null
+						}
+					}
+				},
+				"frame_guides_opacity_camera_3_x":
+				{
+					"group_id": 3,
+					"group_name": "Output",
+					"group_key": "output",
+					"id": 2,
+					"name": "Frame guides opacity (Camera 3.x)",
+					"key": "frame_guides_opacity_camera_3_x",
+					"data_type": "fixed16",
+					"interpretation": "0.0 = transparent, 1.0 = opaque",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 0.1,
+							"max": 1,
+							"value": null
+						}
+					}
+				},
+				"overlays_replaces_1_and_2_above_from_cameras_4_0":
+				{
+					"group_id": 3,
+					"group_name": "Output",
+					"group_key": "output",
+					"id": 3,
+					"name": "Overlays (replaces .1 and .2 above from Cameras 4.0)",
+					"key": "overlays_replaces_1_and_2_above_from_cameras_4_0",
+					"data_type": "int8",
+					"interpretation": "bit flags:\n[0] = display thirds,\n[1] = display cross hairs,\n[2] = display center dot,\n[3] = display horizon",
+					"props":
+					{
+						"frame_guides_style":
+						{
+							"name": "frame guides style",
+							"key": "frame_guides_style",
+							"min": 0,
+							"max": 100,
+							"value": null
+						},
+						"frame_guide_opacity":
+						{
+							"name": "frame guide opacity",
+							"key": "frame_guide_opacity",
+							"min": 0,
+							"max": 100,
+							"value": null
+						},
+						"safe_area_percentage":
+						{
+							"name": "safe area percentage",
+							"key": "safe_area_percentage",
+							"min": 0,
+							"max": 100,
+							"value": null
+						},
+						"grid_style":
+						{
+							"name": "grid style",
+							"key": "grid_style",
+							"min": 0,
+							"max": 100,
+							"value": null
+						}
+					}
+				}
+			}
+		},
+		"display":
+		{
+			"name": "Display",
+			"key": "display",
+			"id": 4,
+			"parameters":
+			{
+				"brightness":
+				{
+					"group_id": 4,
+					"group_name": "Display",
+					"group_key": "display",
+					"id": 0,
+					"name": "Brightness",
+					"key": "brightness",
+					"data_type": "fixed16",
+					"interpretation": "0.0 = minimum, 1.0 = maximum",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 0,
+							"max": 1,
+							"value": null
+						}
+					}
+				},
+				"exposure_and_focus_tools":
+				{
+					"group_id": 4,
+					"group_name": "Display",
+					"group_key": "display",
+					"id": 1,
+					"name": "Exposure and focus tools",
+					"key": "exposure_and_focus_tools",
+					"data_type": "int16_bit_field",
+					"interpretation": "0 = disable, 1 = enable",
+					"props":
+					{
+						"0x1_zebra0x2_focus_assist_0x4_false_color":
+						{
+							"name": "0x1 = zebra,\n0x2 = focus assist, 0x4 = false color",
+							"key": "0x1_zebra0x2_focus_assist_0x4_false_color",
+							"value": null
+						}
+					}
+				},
+				"zebra_level":
+				{
+					"group_id": 4,
+					"group_name": "Display",
+					"group_key": "display",
+					"id": 2,
+					"name": "Zebra level",
+					"key": "zebra_level",
+					"data_type": "fixed16",
+					"interpretation": "0.0 = minimum, 1.0 = maximum",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 0,
+							"max": 1,
+							"value": null
+						}
+					}
+				},
+				"peaking_level":
+				{
+					"group_id": 4,
+					"group_name": "Display",
+					"group_key": "display",
+					"id": 3,
+					"name": "Peaking level",
+					"key": "peaking_level",
+					"data_type": "fixed16",
+					"interpretation": "0.0 = minimum, 1.0 = maximum",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 0,
+							"max": 1,
+							"value": null
+						}
+					}
+				},
+				"color_bar_enable":
+				{
+					"group_id": 4,
+					"group_name": "Display",
+					"group_key": "display",
+					"id": 4,
+					"name": "Color bar enable",
+					"key": "color_bar_enable",
+					"data_type": "int8",
+					"interpretation": "0 = disable bars,\n1-30 = enable bars with timeout (seconds)",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 0,
+							"max": 30,
+							"value": null
+						}
+					}
+				},
+				"focus_assist":
+				{
+					"group_id": 4,
+					"group_name": "Display",
+					"group_key": "display",
+					"id": 5,
+					"name": "Focus Assist",
+					"key": "focus_assist",
+					"data_type": "int8",
+					"interpretation": "0 = Red,\n1 = Green,\n2 = Blue,\n3 = White,\n4 = Black",
+					"props":
+					{
+						"focus_assist_method":
+						{
+							"name": "focus assist method",
+							"key": "focus_assist_method",
+							"value": null
+						},
+						"focus_line_color":
+						{
+							"name": "focus line color",
+							"key": "focus_line_color",
+							"value": null
+						}
+					}
+				},
+				"program_return_feed_enable":
+				{
+					"group_id": 4,
+					"group_name": "Display",
+					"group_key": "display",
+					"id": 6,
+					"name": "Program return feed enable",
+					"key": "program_return_feed_enable",
+					"data_type": "int8",
+					"interpretation": "0 = disable, 1-30 = enable with timeout (seconds)",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 0,
+							"max": 30,
+							"value": null
+						}
+					}
+				}
+			}
+		},
+		"tally":
+		{
+			"name": "Tally",
+			"key": "tally",
+			"id": 5,
+			"parameters":
+			{
+				"tally_brightness":
+				{
+					"group_id": 5,
+					"group_name": "Tally",
+					"group_key": "tally",
+					"id": 0,
+					"name": "Tally brightness",
+					"key": "tally_brightness",
+					"data_type": "fixed16",
+					"interpretation": "Sets the tally front and tally rear brightness to the same level. 0.0 = minimum, 1.0 = maximum",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 0,
+							"max": 1,
+							"value": null
+						}
+					}
+				},
+				"front_tally_brightness":
+				{
+					"group_id": 5,
+					"group_name": "Tally",
+					"group_key": "tally",
+					"id": 1,
+					"name": "Front tally brightness",
+					"key": "front_tally_brightness",
+					"data_type": "fixed16",
+					"interpretation": "Sets the tally front brightness.\n0.0 = minimum,\n1.0 = maximum",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 0,
+							"max": 1,
+							"value": null
+						}
+					}
+				},
+				"rear_tally_brightness":
+				{
+					"group_id": 5,
+					"group_name": "Tally",
+					"group_key": "tally",
+					"id": 2,
+					"name": "Rear tally brightness",
+					"key": "rear_tally_brightness",
+					"data_type": "fixed16",
+					"interpretation": "Sets the tally rear brightness.\n0.0 = minimum,\n1.0 = maximum\nTally rear brightness cannot be turned off",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 0,
+							"max": 1,
+							"value": null
+						}
+					}
+				}
+			}
+		},
+		"reference":
+		{
+			"name": "Reference",
+			"key": "reference",
+			"id": 6,
+			"parameters":
+			{
+				"source":
+				{
+					"group_id": 6,
+					"group_name": "Reference",
+					"group_key": "reference",
+					"id": 0,
+					"name": "Source",
+					"key": "source",
+					"data_type": "int8",
+					"interpretation": "0 = internal,\n1 = program,\n2 = external",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 0,
+							"max": 2,
+							"value": null
+						}
+					}
+				},
+				"offset":
+				{
+					"group_id": 6,
+					"group_name": "Reference",
+					"group_key": "reference",
+					"id": 1,
+					"name": "Offset",
+					"key": "offset",
+					"data_type": "int32",
+					"interpretation": "+/- offset in pixels",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"value": null
+						}
+					}
+				}
+			}
+		},
+		"configuration":
+		{
+			"name": "Configuration",
+			"key": "configuration",
+			"id": 7,
+			"parameters":
+			{
+				"real_time_clock":
+				{
+					"group_id": 7,
+					"group_name": "Configuration",
+					"group_key": "configuration",
+					"id": 0,
+					"name": "Real Time Clock",
+					"key": "real_time_clock",
+					"data_type": "int32",
+					"interpretation": "BCD - YYYYMMDD",
+					"props":
+					{
+						"time":
+						{
+							"name": "time",
+							"key": "time",
+							"value": null
+						},
+						"date":
+						{
+							"name": "date",
+							"key": "date",
+							"value": null
+						}
+					}
+				},
+				"system_language":
+				{
+					"group_id": 7,
+					"group_name": "Configuration",
+					"group_key": "configuration",
+					"id": 1,
+					"name": "System language",
+					"key": "system_language",
+					"data_type": "string",
+					"interpretation": "ISO-639-1 two character language code",
+					"props":
+					{
+						"0_1":
+						{
+							"name": "[0-1]",
+							"key": "0_1",
+							"value": null
+						}
+					}
+				},
+				"timezone":
+				{
+					"group_id": 7,
+					"group_name": "Configuration",
+					"group_key": "configuration",
+					"id": 2,
+					"name": "Timezone",
+					"key": "timezone",
+					"data_type": "int32",
+					"interpretation": "Minutes offset from UTC",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"value": null
+						}
+					}
+				},
+				"location":
+				{
+					"group_id": 7,
+					"group_name": "Configuration",
+					"group_key": "configuration",
+					"id": 3,
+					"name": "Location",
+					"key": "location",
+					"data_type": "int64",
+					"interpretation": "BCD - sDDDdddddddddddd where s is the sign: 0 = west (-), 1 = east (+); DDD degrees, dddddddddddd decimal degrees",
+					"props":
+					{
+						"latitude":
+						{
+							"name": "latitude",
+							"key": "latitude",
+							"value": null
+						},
+						"longitude":
+						{
+							"name": "longitude",
+							"key": "longitude",
+							"value": null
+						}
+					}
+				}
+			}
+		},
+		"color_correction":
+		{
+			"name": "Color Correction",
+			"key": "color_correction",
+			"id": 8,
+			"parameters":
+			{
+				"lift_adjust":
+				{
+					"group_id": 8,
+					"group_name": "Color Correction",
+					"group_key": "color_correction",
+					"id": 0,
+					"name": "Lift Adjust",
+					"key": "lift_adjust",
+					"data_type": "fixed16",
+					"interpretation": "default 0.0",
+					"props":
+					{
+						"red":
+						{
+							"name": "red",
+							"key": "red",
+							"min": -2,
+							"max": 2,
+							"value": null
+						},
+						"green":
+						{
+							"name": "green",
+							"key": "green",
+							"min": -2,
+							"max": 2,
+							"value": null
+						},
+						"blue":
+						{
+							"name": "blue",
+							"key": "blue",
+							"min": -2,
+							"max": 2,
+							"value": null
+						},
+						"luma":
+						{
+							"name": "luma",
+							"key": "luma",
+							"min": -2,
+							"max": 2,
+							"value": null
+						}
+					}
+				},
+				"gamma_adjust":
+				{
+					"group_id": 8,
+					"group_name": "Color Correction",
+					"group_key": "color_correction",
+					"id": 1,
+					"name": "Gamma Adjust",
+					"key": "gamma_adjust",
+					"data_type": "fixed16",
+					"interpretation": "default 0.0",
+					"props":
+					{
+						"red":
+						{
+							"name": "red",
+							"key": "red",
+							"min": -4,
+							"max": 4,
+							"value": null
+						},
+						"green":
+						{
+							"name": "green",
+							"key": "green",
+							"min": -4,
+							"max": 4,
+							"value": null
+						},
+						"blue":
+						{
+							"name": "blue",
+							"key": "blue",
+							"min": -4,
+							"max": 4,
+							"value": null
+						},
+						"luma":
+						{
+							"name": "luma",
+							"key": "luma",
+							"min": -4,
+							"max": 4,
+							"value": null
+						}
+					}
+				},
+				"gain_adjust":
+				{
+					"group_id": 8,
+					"group_name": "Color Correction",
+					"group_key": "color_correction",
+					"id": 2,
+					"name": "Gain Adjust",
+					"key": "gain_adjust",
+					"data_type": "fixed16",
+					"interpretation": "default 1.0",
+					"props":
+					{
+						"red":
+						{
+							"name": "red",
+							"key": "red",
+							"min": 0,
+							"max": 16,
+							"value": null
+						},
+						"green":
+						{
+							"name": "green",
+							"key": "green",
+							"min": 0,
+							"max": 16,
+							"value": null
+						},
+						"blue":
+						{
+							"name": "blue",
+							"key": "blue",
+							"min": 0,
+							"max": 16,
+							"value": null
+						},
+						"luma":
+						{
+							"name": "luma",
+							"key": "luma",
+							"min": 0,
+							"max": 16,
+							"value": null
+						}
+					}
+				},
+				"offset_adjust":
+				{
+					"group_id": 8,
+					"group_name": "Color Correction",
+					"group_key": "color_correction",
+					"id": 3,
+					"name": "Offset Adjust",
+					"key": "offset_adjust",
+					"data_type": "fixed16",
+					"interpretation": "default 0.0",
+					"props":
+					{
+						"red":
+						{
+							"name": "red",
+							"key": "red",
+							"min": -8,
+							"max": 8,
+							"value": null
+						},
+						"green":
+						{
+							"name": "green",
+							"key": "green",
+							"min": -8,
+							"max": 8,
+							"value": null
+						},
+						"blue":
+						{
+							"name": "blue",
+							"key": "blue",
+							"min": -8,
+							"max": 8,
+							"value": null
+						},
+						"luma":
+						{
+							"name": "luma",
+							"key": "luma",
+							"min": -8,
+							"max": 8,
+							"value": null
+						}
+					}
+				},
+				"contrast_adjust":
+				{
+					"group_id": 8,
+					"group_name": "Color Correction",
+					"group_key": "color_correction",
+					"id": 4,
+					"name": "Contrast Adjust",
+					"key": "contrast_adjust",
+					"data_type": "fixed16",
+					"interpretation": "default 1.0",
+					"props":
+					{
+						"pivot":
+						{
+							"name": "pivot",
+							"key": "pivot",
+							"min": 0,
+							"max": 2,
+							"value": null
+						},
+						"adj":
+						{
+							"name": "adj",
+							"key": "adj",
+							"min": 0,
+							"max": 2,
+							"value": null
+						}
+					}
+				},
+				"luma_mix":
+				{
+					"group_id": 8,
+					"group_name": "Color Correction",
+					"group_key": "color_correction",
+					"id": 5,
+					"name": "Luma mix",
+					"key": "luma_mix",
+					"data_type": "fixed16",
+					"interpretation": "default 1.0",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 0,
+							"max": 1,
+							"value": null
+						}
+					}
+				},
+				"color_adjust":
+				{
+					"group_id": 8,
+					"group_name": "Color Correction",
+					"group_key": "color_correction",
+					"id": 6,
+					"name": "Color Adjust",
+					"key": "color_adjust",
+					"data_type": "fixed16",
+					"interpretation": "default 1.0",
+					"props":
+					{
+						"hue":
+						{
+							"name": "hue",
+							"key": "hue",
+							"min": 0,
+							"max": 2,
+							"value": null
+						},
+						"sat":
+						{
+							"name": "sat",
+							"key": "sat",
+							"min": 0,
+							"max": 2,
+							"value": null
+						}
+					}
+				},
+				"correction_reset_default":
+				{
+					"group_id": 8,
+					"group_name": "Color Correction",
+					"group_key": "color_correction",
+					"id": 7,
+					"name": "Correction Reset Default",
+					"key": "correction_reset_default",
+					"data_type": "void",
+					"interpretation": "reset to defaults",
+					"props":
+					{}
+				}
+			}
+		},
+		"media":
+		{
+			"name": "Media",
+			"key": "media",
+			"id": 10,
+			"parameters":
+			{
+				"codec":
+				{
+					"group_id": 10,
+					"group_name": "Media",
+					"group_key": "media",
+					"id": 0,
+					"name": "Codec",
+					"key": "codec",
+					"data_type": "int8",
+					"interpretation": "Blackmagic RAW: 0 = Q0,\n1 = Q5,\n2 = 3:1,\n3 = 5:1,\n4 = 8:1,\n5 = 12:1",
+					"props":
+					{
+						"basic_codec":
+						{
+							"name": "basic codec",
+							"key": "basic_codec",
+							"value": null
+						},
+						"code_variant":
+						{
+							"name": "code variant",
+							"key": "code_variant",
+							"value": null
+						}
+					}
+				},
+				"transport_mode":
+				{
+					"group_id": 10,
+					"group_name": "Media",
+					"group_key": "media",
+					"id": 1,
+					"name": "Transport mode",
+					"key": "transport_mode",
+					"data_type": "int8",
+					"interpretation": "0 = CFast card, 1 = SD Card,\n2 = SSD Recorder,\n3 = USB",
+					"props":
+					{
+						"mode":
+						{
+							"name": "mode",
+							"key": "mode",
+							"value": null
+						},
+						"speed":
+						{
+							"name": "speed",
+							"key": "speed",
+							"value": null
+						},
+						"flags":
+						{
+							"name": "flags",
+							"key": "flags",
+							"value": null
+						},
+						"slot_1_storage_medium":
+						{
+							"name": "slot 1 storage medium",
+							"key": "slot_1_storage_medium",
+							"value": null
+						},
+						"slot_2_storage_medium":
+						{
+							"name": "slot 2 storage medium",
+							"key": "slot_2_storage_medium",
+							"value": null
+						}
+					}
+				},
+				"playback_control":
+				{
+					"group_id": 10,
+					"group_name": "Media",
+					"group_key": "media",
+					"id": 2,
+					"name": "Playback Control",
+					"key": "playback_control",
+					"data_type": "int8",
+					"interpretation": "0 = Previous,\n1 = Next",
+					"props":
+					{
+						"clip":
+						{
+							"name": "clip",
+							"key": "clip",
+							"value": null
+						}
+					}
+				},
+				"still_capture":
+				{
+					"group_id": 10,
+					"group_name": "Media",
+					"group_key": "media",
+					"id": 3,
+					"name": "Still Capture",
+					"key": "still_capture",
+					"data_type": "void",
+					"interpretation": "Capture",
+					"props":
+					{}
+				}
+			}
+		},
+		"ptz_control":
+		{
+			"name": "PTZ Control",
+			"key": "ptz_control",
+			"id": 11,
+			"parameters":
+			{
+				"pan_tilt_velocity":
+				{
+					"group_id": 11,
+					"group_name": "PTZ Control",
+					"group_key": "ptz_control",
+					"id": 0,
+					"name": "Pan/Tilt Velocity",
+					"key": "pan_tilt_velocity",
+					"data_type": "fixed16",
+					"interpretation": "-1.0 = full speed down,\n1.0 = full speed up",
+					"props":
+					{
+						"pan_velocity":
+						{
+							"name": "pan velocity",
+							"key": "pan_velocity",
+							"min": -1,
+							"max": 1,
+							"value": null
+						},
+						"tilt_velocity":
+						{
+							"name": "tilt velocity",
+							"key": "tilt_velocity",
+							"min": -1,
+							"max": 1,
+							"value": null
+						}
+					}
+				},
+				"memory_preset":
+				{
+					"group_id": 11,
+					"group_name": "PTZ Control",
+					"group_key": "ptz_control",
+					"id": 1,
+					"name": "Memory Preset",
+					"key": "memory_preset",
+					"data_type": "int8",
+					"interpretation": "0 = reset,\n1 = store location, 2 = recall location",
+					"props":
+					{
+						"preset_command":
+						{
+							"name": "preset command",
+							"key": "preset_command",
+							"min": 0,
+							"max": 5,
+							"value": null
+						},
+						"preset_slot":
+						{
+							"name": "=\npreset slot",
+							"key": "preset_slot",
+							"min": 0,
+							"max": 5,
+							"value": null
+						}
+					}
+				}
+			}
+		},
+		"metadata":
+		{
+			"name": "Metadata",
+			"key": "metadata",
+			"id": 12,
+			"parameters":
+			{
+				"reel":
+				{
+					"group_id": 12,
+					"group_name": "Metadata",
+					"group_key": "metadata",
+					"id": 0,
+					"name": "Reel",
+					"key": "reel",
+					"data_type": "int16",
+					"interpretation": "",
+					"props":
+					{
+						"reel":
+						{
+							"name": "reel",
+							"key": "reel",
+							"min": 0,
+							"max": 999,
+							"value": null
+						}
+					}
+				},
+				"scene_tags":
+				{
+					"group_id": 12,
+					"group_name": "Metadata",
+					"group_key": "metadata",
+					"id": 1,
+					"name": "Scene Tags",
+					"key": "scene_tags",
+					"data_type": "int8",
+					"interpretation": "0 = Night\n1 = Day",
+					"props":
+					{
+						"scene_tags":
+						{
+							"name": "scene tags",
+							"key": "scene_tags",
+							"value": null
+						},
+						"interior_exterior":
+						{
+							"name": "interior / exterior",
+							"key": "interior_exterior",
+							"value": null
+						},
+						"day_night":
+						{
+							"name": "day / night",
+							"key": "day_night",
+							"value": null
+						}
+					}
+				},
+				"scene":
+				{
+					"group_id": 12,
+					"group_name": "Metadata",
+					"group_key": "metadata",
+					"id": 2,
+					"name": "Scene",
+					"key": "scene",
+					"data_type": "string",
+					"interpretation": "",
+					"props":
+					{
+						"0_4_scene":
+						{
+							"name": "[0-4] = scene",
+							"key": "0_4_scene",
+							"value": null
+						}
+					}
+				},
+				"take":
+				{
+					"group_id": 12,
+					"group_name": "Metadata",
+					"group_key": "metadata",
+					"id": 3,
+					"name": "Take",
+					"key": "take",
+					"data_type": "int8",
+					"interpretation": "1 = None\n0 = PU\n1 = VFX\n2 = SER",
+					"props":
+					{
+						"take_number":
+						{
+							"name": "take number",
+							"key": "take_number",
+							"min": 1,
+							"max": 99,
+							"value": null
+						},
+						"take_tags":
+						{
+							"name": "take tags",
+							"key": "take_tags",
+							"min": 1,
+							"max": 99,
+							"value": null
+						}
+					}
+				},
+				"good_take":
+				{
+					"group_id": 12,
+					"group_name": "Metadata",
+					"group_key": "metadata",
+					"id": 4,
+					"name": "Good Take",
+					"key": "good_take",
+					"data_type": "void",
+					"interpretation": "",
+					"props":
+					{
+						"good_take":
+						{
+							"name": "good take",
+							"key": "good_take",
+							"value": null
+						}
+					}
+				},
+				"camera_id":
+				{
+					"group_id": 12,
+					"group_name": "Metadata",
+					"group_key": "metadata",
+					"id": 5,
+					"name": "Camera ID",
+					"key": "camera_id",
+					"data_type": "string",
+					"interpretation": "",
+					"props":
+					{
+						"0_28_id":
+						{
+							"name": "[0-28] = ID",
+							"key": "0_28_id",
+							"value": null
+						}
+					}
+				},
+				"camera_operator":
+				{
+					"group_id": 12,
+					"group_name": "Metadata",
+					"group_key": "metadata",
+					"id": 6,
+					"name": "Camera Operator",
+					"key": "camera_operator",
+					"data_type": "string",
+					"interpretation": "",
+					"props":
+					{
+						"0_28_operator":
+						{
+							"name": "[0-28] = operator",
+							"key": "0_28_operator",
+							"value": null
+						}
+					}
+				},
+				"director":
+				{
+					"group_id": 12,
+					"group_name": "Metadata",
+					"group_key": "metadata",
+					"id": 7,
+					"name": "Director",
+					"key": "director",
+					"data_type": "string",
+					"interpretation": "",
+					"props":
+					{
+						"0_27_director":
+						{
+							"name": "[0-27] = director",
+							"key": "0_27_director",
+							"value": null
+						}
+					}
+				},
+				"project_name":
+				{
+					"group_id": 12,
+					"group_name": "Metadata",
+					"group_key": "metadata",
+					"id": 8,
+					"name": "Project Name",
+					"key": "project_name",
+					"data_type": "string",
+					"interpretation": "",
+					"props":
+					{
+						"0_28_project":
+						{
+							"name": "[0-28] = project",
+							"key": "0_28_project",
+							"value": null
+						}
+					}
+				},
+				"lens_type":
+				{
+					"group_id": 12,
+					"group_name": "Metadata",
+					"group_key": "metadata",
+					"id": 9,
+					"name": "Lens Type",
+					"key": "lens_type",
+					"data_type": "string",
+					"interpretation": "",
+					"props":
+					{
+						"0_55_type":
+						{
+							"name": "[0-55] = type",
+							"key": "0_55_type",
+							"value": null
+						}
+					}
+				},
+				"lens_iris":
+				{
+					"group_id": 12,
+					"group_name": "Metadata",
+					"group_key": "metadata",
+					"id": 10,
+					"name": "Lens Iris",
+					"key": "lens_iris",
+					"data_type": "string",
+					"interpretation": "",
+					"props":
+					{
+						"0_19_iris":
+						{
+							"name": "[0-19] = iris",
+							"key": "0_19_iris",
+							"value": null
+						}
+					}
+				},
+				"lens_focal_length":
+				{
+					"group_id": 12,
+					"group_name": "Metadata",
+					"group_key": "metadata",
+					"id": 11,
+					"name": "Lens Focal Length",
+					"key": "lens_focal_length",
+					"data_type": "string",
+					"interpretation": "",
+					"props":
+					{
+						"0_29_focal_length":
+						{
+							"name": "[0-29] = focal length",
+							"key": "0_29_focal_length",
+							"value": null
+						}
+					}
+				},
+				"lens_distance":
+				{
+					"group_id": 12,
+					"group_name": "Metadata",
+					"group_key": "metadata",
+					"id": 12,
+					"name": "Lens Distance",
+					"key": "lens_distance",
+					"data_type": "string",
+					"interpretation": "",
+					"props":
+					{
+						"0_49_distance":
+						{
+							"name": "[0-49] = distance",
+							"key": "0_49_distance",
+							"value": null
+						}
+					}
+				},
+				"lens_filter":
+				{
+					"group_id": 12,
+					"group_name": "Metadata",
+					"group_key": "metadata",
+					"id": 13,
+					"name": "Lens Filter",
+					"key": "lens_filter",
+					"data_type": "string",
+					"interpretation": "",
+					"props":
+					{
+						"0_29_filter":
+						{
+							"name": "[0-29] = filter",
+							"key": "0_29_filter",
+							"value": null
+						}
+					}
+				},
+				"slate_mode":
+				{
+					"group_id": 12,
+					"group_name": "Metadata",
+					"group_key": "metadata",
+					"id": 14,
+					"name": "Slate Mode",
+					"key": "slate_mode",
+					"data_type": "int8",
+					"interpretation": "0 = Recording\n1 = Playback",
+					"props":
+					{
+						"type":
+						{
+							"name": "type",
+							"key": "type",
+							"value": null
+						}
+					}
+				}
+			}
+		},
+		"rgb_tally":
+		{
+			"name": "RGB Tally",
+			"key": "rgb_tally",
+			"id": 128,
+			"parameters":
+			{
+				"pgm":
+				{
+					"group_id": 128,
+					"group_name": "RGB Tally",
+					"group_key": "rgb_tally",
+					"id": 0,
+					"name": "PGM",
+					"key": "pgm",
+					"data_type": "int8",
+					"interpretation": "Custom: 0 = off, 1 = pgm, 2 = pvw",
+					"props":
+					{
+						"off":
+						{
+							"name": "Off",
+							"key": "off",
+							"max": 2,
+							"value": null
+						},
+						"pgm":
+						{
+							"name": "Pgm",
+							"key": "pgm",
+							"max": 2,
+							"value": null
+						},
+						"pvw":
+						{
+							"name": "Pvw",
+							"key": "pvw",
+							"max": 2,
+							"value": null
+						}
+					}
+				},
+				"set_tally_color":
+				{
+					"group_id": 128,
+					"group_name": "RGB Tally",
+					"group_key": "rgb_tally",
+					"id": 1,
+					"name": "Set tally color",
+					"key": "set_tally_color",
+					"data_type": "int16",
+					"interpretation": "Custom: Set RGB color to tally RR GG BB YY",
+					"props":
+					{
+						"red":
+						{
+							"name": "Red",
+							"key": "red",
+							"max": 255,
+							"value": null
+						},
+						"green":
+						{
+							"name": "Green",
+							"key": "green",
+							"max": 255,
+							"value": null
+						},
+						"blue":
+						{
+							"name": "Blue",
+							"key": "blue",
+							"max": 255,
+							"value": null
+						},
+						"luma":
+						{
+							"name": "Luma",
+							"key": "luma",
+							"max": 255,
+							"value": null
+						}
+					}
+				}
+			}
+		},
+		"bluetooth":
+		{
+			"name": "Bluetooth",
+			"key": "bluetooth",
+			"id": 129,
+			"parameters":
+			{
+				"disconnect":
+				{
+					"group_id": 129,
+					"group_name": "Bluetooth",
+					"group_key": "bluetooth",
+					"id": 0,
+					"name": "Disconnect",
+					"key": "disconnect",
+					"data_type": "void",
+					"interpretation": "Custom: Disconnect from camera",
+					"props":
+					{}
+				},
+				"connect":
+				{
+					"group_id": 129,
+					"group_name": "Bluetooth",
+					"group_key": "bluetooth",
+					"id": 1,
+					"name": "Connect",
+					"key": "connect",
+					"data_type": "int16",
+					"interpretation": "Custom: Connect to camera MAC address",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"value": null
+						}
+					}
+				},
+				"passcode":
+				{
+					"group_id": 129,
+					"group_name": "Bluetooth",
+					"group_key": "bluetooth",
+					"id": 4,
+					"name": "Passcode",
+					"key": "passcode",
+					"data_type": "int32",
+					"interpretation": "Custom: Exchange passcode 6-digid",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"value": null
+						}
+					}
+				}
+			}
+		}
+	}
+}
