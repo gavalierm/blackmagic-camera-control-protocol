@@ -2263,8 +2263,8 @@
 					"id": 1,
 					"name": "Set tally color",
 					"key": "set_tally_color",
-					"data_type": "int16",
-					"interpretation": "Custom: Set RGB color to tally RR GG BB YY",
+					"data_type": "uInt8",
+					"interpretation": "Custom: Set RGB color to tally RR GG BB AA",
 					"props":
 					{
 						"red":
@@ -2291,10 +2291,10 @@
 							"max": 255,
 							"value": null
 						},
-						"luma":
+						"alpha":
 						{
-							"name": "Luma",
-							"key": "luma",
+							"name": "Alpha",
+							"key": "alpha",
 							"min": 0,
 							"max": 255,
 							"value": null
@@ -2337,7 +2337,7 @@
 					"group_id": 129,
 					"group_name": "Bluetooth",
 					"group_key": "bluetooth",
-					"id": 0,
+					"id": 1,
 					"name": "Disconnect",
 					"key": "disconnect",
 					"data_type": "void",
@@ -2350,17 +2350,59 @@
 					"group_id": 129,
 					"group_name": "Bluetooth",
 					"group_key": "bluetooth",
-					"id": 1,
+					"id": 2,
 					"name": "Connect",
 					"key": "connect",
-					"data_type": "int16",
+					"data_type": "uInt8",
 					"interpretation": "Custom: Connect to camera MAC address",
 					"props":
 					{
-						"default":
+						"0":
 						{
-							"name": "Default",
-							"key": "default",
+							"name": "0",
+							"key": "0",
+							"min": 0,
+							"max": 255,
+							"value": null
+						},
+						"1":
+						{
+							"name": "1",
+							"key": "1",
+							"min": 0,
+							"max": 255,
+							"value": null
+						},
+						"2":
+						{
+							"name": "2",
+							"key": "2",
+							"min": 0,
+							"max": 255,
+							"value": null
+						},
+						"3":
+						{
+							"name": "3",
+							"key": "3",
+							"min": 0,
+							"max": 255,
+							"value": null
+						},
+						"4":
+						{
+							"name": "4",
+							"key": "4",
+							"min": 0,
+							"max": 255,
+							"value": null
+						},
+						"5":
+						{
+							"name": "5",
+							"key": "5",
+							"min": 0,
+							"max": 255,
 							"value": null
 						}
 					}
@@ -2370,7 +2412,7 @@
 					"group_id": 129,
 					"group_name": "Bluetooth",
 					"group_key": "bluetooth",
-					"id": 4,
+					"id": 3,
 					"name": "Passcode",
 					"key": "passcode",
 					"data_type": "int32",
