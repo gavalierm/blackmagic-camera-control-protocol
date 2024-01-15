@@ -96,7 +96,7 @@
 			"name": "Camera Status",
 			"key": "camera_status",
 			"uuid": "7fe8691d-95dc-4fc5-8abd-ca74339b51b9",
-			"decription": "Request notifications for this characteristic to receive camera status updates.\n\nThe camera status is represented by flags contained in an 8-bit integer:\nNone = 0x00\nCamera Power On = 0x01\nConnected = 0x02\nPaired = 0x04\nVersions Verified = 0x08\nInitial Payload Received = 0x10\nCamera Ready = 0x20"
+			"decription": "Request notifications for this characteristic to receive camera status updates. The camera status is represented by flags contained in an 8-bit integer: None = 0x00 Camera Power On = 0x01 Connected = 0x02 Paired = 0x04 Versions Verified = 0x08 Initial Payload Received = 0x10 Camera Ready = 0x20"
 		},
 		{
 			"name": "Device Name",
@@ -164,7 +164,7 @@
 					"name": "Aperture (f-stop)",
 					"key": "aperture_f_stop",
 					"data_type": "fixed16",
-					"interpretation": "Aperture Value (where fnumber\n= sqrt(2^AV))",
+					"interpretation": "Aperture Value (where fnumber = sqrt(2^AV))",
 					"props":
 					{
 						"default":
@@ -285,7 +285,7 @@
 					"name": "Set absolute zoom (normalised)",
 					"key": "set_absolute_zoom_normalised",
 					"data_type": "fixed16",
-					"interpretation": "Move to specified focal length:\n0.0 = wide, 1.0 = tele",
+					"interpretation": "Move to specified focal length: 0.0 = wide, 1.0 = tele",
 					"props":
 					{
 						"default":
@@ -307,7 +307,7 @@
 					"name": "Set continuous zoom (speed)",
 					"key": "set_continuous_zoom_speed",
 					"data_type": "fixed16",
-					"interpretation": "Start/stop zooming at specified rate: -1.0 = zoom wider fast, 0.0\n= stop,\n+1 = zoom tele fast",
+					"interpretation": "Start/stop zooming at specified rate: -1.0 = zoom wider fast, 0.0 = stop, +1 = zoom tele fast",
 					"props":
 					{
 						"default":
@@ -383,7 +383,7 @@
 					"name": "Gain (up to Camera 4.9)",
 					"key": "gain_up_to_camera_4_9",
 					"data_type": "int8",
-					"interpretation": "1x, 2x, 4x, 8x, 16x, 32x, 64x, 128x\ngain",
+					"interpretation": "1x, 2x, 4x, 8x, 16x, 32x, 64x, 128x gain",
 					"props":
 					{
 						"default":
@@ -483,7 +483,7 @@
 					"name": "Exposure (ordinal)",
 					"key": "exposure_ordinal",
 					"data_type": "int16",
-					"interpretation": "Steps through available exposure values from minimum\n(0) to maximum (n)",
+					"interpretation": "Steps through available exposure values from minimum (0) to maximum (n)",
 					"props":
 					{
 						"default":
@@ -505,7 +505,7 @@
 					"name": "Dynamic Range Mode",
 					"key": "dynamic_range_mode",
 					"data_type": "int8",
-					"interpretation": "0 = film, 1 = video,  2 = extended video",
+					"interpretation": "0 = film, 1 = video, 2 = extended video",
 					"props":
 					{
 						"default":
@@ -527,7 +527,7 @@
 					"name": "Video sharpening level",
 					"key": "video_sharpening_level",
 					"data_type": "int8",
-					"interpretation": "0 = off, 1 = low, 2 = medium,\n3 = high",
+					"interpretation": "0 = off, 1 = low, 2 = medium, 3 = high",
 					"props":
 					{
 						"default":
@@ -593,7 +593,7 @@
 					"name": "Set auto exposure mode",
 					"key": "set_auto_exposure_mode",
 					"data_type": "int8",
-					"interpretation": "0 = Manual Trigger, 1 = Iris,\n2 = Shutter, 3 = Iris + Shutter, 4 = Shutter + Iris",
+					"interpretation": "0 = Manual Trigger, 1 = Iris, 2 = Shutter, 3 = Iris + Shutter, 4 = Shutter + Iris",
 					"props":
 					{
 						"default":
@@ -848,7 +848,7 @@
 					"name": "Input type",
 					"key": "input_type",
 					"data_type": "int8",
-					"interpretation": "0 = internal mic,\n1 = line level input,\n2 = low mic level input, 3 = high mic level input",
+					"interpretation": "0 = internal mic, 1 = line level input, 2 = low mic level input, 3 = high mic level input",
 					"props":
 					{
 						"default":
@@ -929,7 +929,7 @@
 					"name": "Overlay enables",
 					"key": "overlay_enables",
 					"data_type": "uint16_bit_field",
-					"interpretation": "bit flags:\n[0] = display status,\n[1] = display frame guides\nSome cameras don't allow separate control of frame guides and status overlays.",
+					"interpretation": "bit flags: [0] = display status, [1] = display frame guides Some cameras don't allow separate control of frame guides and status overlays.",
 					"props":
 					{
 						"default":
@@ -949,7 +949,7 @@
 					"name": "Frame guides style (Camera 3.x)",
 					"key": "frame_guides_style_camera_3_x",
 					"data_type": "int8",
-					"interpretation": "0 = HDTV, 1 = 4:3, 2 = 2.4:1,\n3 = 2.39:1, 4 = 2.35:1,\n5 = 1.85:1, 6 = thirds",
+					"interpretation": "0 = HDTV, 1 = 4:3, 2 = 2.4:1, 3 = 2.39:1, 4 = 2.35:1, 5 = 1.85:1, 6 = thirds",
 					"props":
 					{
 						"default":
@@ -993,7 +993,7 @@
 					"name": "Overlays (replaces .1 and .2 above from Cameras 4.0)",
 					"key": "overlays_replaces_1_and_2_above_from_cameras_4_0",
 					"data_type": "int8",
-					"interpretation": "bit flags:\n[0] = display thirds,\n[1] = display cross hairs,\n[2] = display center dot,\n[3] = display horizon",
+					"interpretation": "bit flags: [0] = display thirds, [1] = display cross hairs, [2] = display center dot, [3] = display horizon",
 					"props":
 					{
 						"frame_guides_style":
@@ -1075,7 +1075,7 @@
 					{
 						"0x1_zebra0x2_focus_assist_0x4_false_color":
 						{
-							"name": "0x1 = zebra,\n0x2 = focus assist, 0x4 = false color",
+							"name": "0x1 = zebra, 0x2 = focus assist, 0x4 = false color",
 							"key": "0x1_zebra0x2_focus_assist_0x4_false_color",
 							"value": null
 						}
@@ -1134,7 +1134,7 @@
 					"name": "Color bar enable",
 					"key": "color_bar_enable",
 					"data_type": "int8",
-					"interpretation": "0 = disable bars,\n1-30 = enable bars with timeout (seconds)",
+					"interpretation": "0 = disable bars, 1-30 = enable bars with timeout (seconds)",
 					"props":
 					{
 						"default":
@@ -1156,7 +1156,7 @@
 					"name": "Focus Assist",
 					"key": "focus_assist",
 					"data_type": "int8",
-					"interpretation": "0 = Red,\n1 = Green,\n2 = Blue,\n3 = White,\n4 = Black",
+					"interpretation": "0 = Red, 1 = Green, 2 = Blue, 3 = White, 4 = Black",
 					"props":
 					{
 						"focus_assist_method":
@@ -1235,7 +1235,7 @@
 					"name": "Front tally brightness",
 					"key": "front_tally_brightness",
 					"data_type": "fixed16",
-					"interpretation": "Sets the tally front brightness.\n0.0 = minimum,\n1.0 = maximum",
+					"interpretation": "Sets the tally front brightness. 0.0 = minimum, 1.0 = maximum",
 					"props":
 					{
 						"default":
@@ -1257,7 +1257,7 @@
 					"name": "Rear tally brightness",
 					"key": "rear_tally_brightness",
 					"data_type": "fixed16",
-					"interpretation": "Sets the tally rear brightness.\n0.0 = minimum,\n1.0 = maximum\nTally rear brightness cannot be turned off",
+					"interpretation": "Sets the tally rear brightness. 0.0 = minimum, 1.0 = maximum Tally rear brightness cannot be turned off",
 					"props":
 					{
 						"default":
@@ -1288,7 +1288,7 @@
 					"name": "Source",
 					"key": "source",
 					"data_type": "int8",
-					"interpretation": "0 = internal,\n1 = program,\n2 = external",
+					"interpretation": "0 = internal, 1 = program, 2 = external",
 					"props":
 					{
 						"default":
@@ -1728,7 +1728,7 @@
 					"name": "Codec",
 					"key": "codec",
 					"data_type": "int8",
-					"interpretation": "Blackmagic RAW: 0 = Q0,\n1 = Q5,\n2 = 3:1,\n3 = 5:1,\n4 = 8:1,\n5 = 12:1",
+					"interpretation": "Blackmagic RAW: 0 = Q0, 1 = Q5, 2 = 3:1, 3 = 5:1, 4 = 8:1, 5 = 12:1",
 					"props":
 					{
 						"basic_codec":
@@ -1754,7 +1754,7 @@
 					"name": "Transport mode",
 					"key": "transport_mode",
 					"data_type": "int8",
-					"interpretation": "0 = CFast card, 1 = SD Card,\n2 = SSD Recorder,\n3 = USB",
+					"interpretation": "0 = CFast card, 1 = SD Card, 2 = SSD Recorder, 3 = USB",
 					"props":
 					{
 						"mode":
@@ -1798,7 +1798,7 @@
 					"name": "Playback Control",
 					"key": "playback_control",
 					"data_type": "int8",
-					"interpretation": "0 = Previous,\n1 = Next",
+					"interpretation": "0 = Previous, 1 = Next",
 					"props":
 					{
 						"clip":
@@ -1840,7 +1840,7 @@
 					"name": "Pan/Tilt Velocity",
 					"key": "pan_tilt_velocity",
 					"data_type": "fixed16",
-					"interpretation": "-1.0 = full speed down,\n1.0 = full speed up",
+					"interpretation": "-1.0 = full speed down, 1.0 = full speed up",
 					"props":
 					{
 						"pan_velocity":
@@ -1870,7 +1870,7 @@
 					"name": "Memory Preset",
 					"key": "memory_preset",
 					"data_type": "int8",
-					"interpretation": "0 = reset,\n1 = store location, 2 = recall location",
+					"interpretation": "0 = reset, 1 = store location, 2 = recall location",
 					"props":
 					{
 						"preset_command":
@@ -1883,7 +1883,7 @@
 						},
 						"preset_slot":
 						{
-							"name": "=\npreset slot",
+							"name": "= preset slot",
 							"key": "preset_slot",
 							"min": 0,
 							"max": 5,
@@ -1931,7 +1931,7 @@
 					"name": "Scene Tags",
 					"key": "scene_tags",
 					"data_type": "int8",
-					"interpretation": "0 = Night\n1 = Day",
+					"interpretation": "0 = Night 1 = Day",
 					"props":
 					{
 						"scene_tags":
@@ -1983,7 +1983,7 @@
 					"name": "Take",
 					"key": "take",
 					"data_type": "int8",
-					"interpretation": "1 = None\n0 = PU\n1 = VFX\n2 = SER",
+					"interpretation": "1 = None 0 = PU 1 = VFX 2 = SER",
 					"props":
 					{
 						"take_number":
@@ -2213,7 +2213,7 @@
 					"name": "Slate Mode",
 					"key": "slate_mode",
 					"data_type": "int8",
-					"interpretation": "0 = Recording\n1 = Playback",
+					"interpretation": "0 = Recording 1 = Playback",
 					"props":
 					{
 						"type":
@@ -2318,7 +2318,7 @@
 					"id": 0,
 					"name": "Notify",
 					"key": "notify",
-					"data_type": "int16",
+					"data_type": "int8",
 					"interpretation": "Custom: 0 = disconnected, 1 = connected, 2 = connecting, 3 = need passcode, 4 = need passcode, 5 = timeout",
 					"props":
 					{
