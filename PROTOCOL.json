@@ -2233,24 +2233,54 @@
 			"id": 128,
 			"parameters":
 			{
-				"set_tally":
+				"signaling_tally":
 				{
 					"group_id": 128,
 					"group_name": "RGB Tally",
 					"group_key": "rgb_tally",
 					"id": 0,
-					"name": "Set tally",
-					"key": "set_tally",
+					"name": "Signaling tally",
+					"key": "signaling_tally",
 					"data_type": "int8",
-					"interpretation": "Custom: 0 = off, 1 = pgm, 2 = pvw",
+					"interpretation": "Custom: 0 = clear actual signal, 1 = tally_lock (yellow), 2 = attention (yellow blink), 3 = attention (blue)",
 					"props":
 					{
 						"default":
 						{
-							"name": "default",
-							"key": "default",
-							"min": 2,
-							"max": 2,
+							"name": "Signaling",
+							"key": "signaling",
+							"min": 0,
+							"max": 8,
+							"value": null
+						}
+					}
+				},
+				"set_tally":
+				{
+					"group_id": 128,
+					"group_name": "RGB Tally",
+					"group_key": "rgb_tally",
+					"id": 1,
+					"name": "Set tally",
+					"key": "set_tally",
+					"data_type": "int8",
+					"interpretation": "Destination address for group_id 128 is not controlled. This message is ment for 255 aka Broadcast. 1 byte = pvw / 0-255, 2 byte = pgm / 0-255, Values represents camera ID",
+					"props":
+					{
+						"pvw":
+						{
+							"name": "Preview",
+							"key": "pvw",
+							"min": 0,
+							"max": 1,
+							"value": null
+						},
+						"pgm":
+						{
+							"name": "Program",
+							"key": "pgm",
+							"min": 0,
+							"max": 1,
 							"value": null
 						}
 					}
@@ -2260,7 +2290,7 @@
 					"group_id": 128,
 					"group_name": "RGB Tally",
 					"group_key": "rgb_tally",
-					"id": 1,
+					"id": 2,
 					"name": "Set tally color",
 					"key": "set_tally_color",
 					"data_type": "uInt8",
