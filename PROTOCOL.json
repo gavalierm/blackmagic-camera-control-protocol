@@ -1712,6 +1712,29 @@
 				}
 			}
 		},
+		"timecode":
+		{
+			"name": "Timecode",
+			"key": "timecode",
+			"id": 9,
+			"note": "This is not official documented part, but i know that camera send 1s thick to this endpoint, the oficial timecode is on separate characteristics. It can be used as hearbeat?",
+			"parameters":
+			{
+				"thick":
+				{
+					"group_id": 9,
+					"group_name": "Timecode",
+					"group_key": "timecode",
+					"id": 0,
+					"name": "Thick",
+					"key": "thick",
+					"data_type": "int8",
+					"interpretation": "",
+					"props":
+					{}
+				}
+			}
+		},
 		"media":
 		{
 			"name": "Media",
@@ -2267,18 +2290,18 @@
 					"interpretation": "Destination address for group_id 128 is not controlled. This message is ment for 255 aka Broadcast. 1 byte = pvw / 0-255, 2 byte = pgm / 0-255, Values represents camera ID",
 					"props":
 					{
-						"pvw":
-						{
-							"name": "Preview",
-							"key": "pvw",
-							"min": 0,
-							"max": 1,
-							"value": null
-						},
 						"pgm":
 						{
 							"name": "Program",
 							"key": "pgm",
+							"min": 0,
+							"max": 1,
+							"value": null
+						},
+						"pvw":
+						{
+							"name": "Preview",
+							"key": "pvw",
 							"min": 0,
 							"max": 1,
 							"value": null
@@ -2349,7 +2372,7 @@
 					"name": "Notify",
 					"key": "notify",
 					"data_type": "int8",
-					"interpretation": "Custom: 0 = disconnected, 1 = connected, 2 = connecting, 3 = need passcode, 4 = need passcode, 5 = timeout",
+					"interpretation": "Custom: 0 = disconnected, 1 = connecting, 2 = connected, 3 = need passcode, 4 = timeout",
 					"props":
 					{
 						"default":
@@ -2458,6 +2481,19 @@
 							"value": null
 						}
 					}
+				},
+				"clear_pairing":
+				{
+					"group_id": 129,
+					"group_name": "Bluetooth",
+					"group_key": "bluetooth",
+					"id": 4,
+					"name": "Clear pairing",
+					"key": "clear_pairing",
+					"data_type": "void",
+					"interpretation": "Custom: Clear pairing. Force Passkey next attempt",
+					"props":
+					{}
 				}
 			}
 		}
