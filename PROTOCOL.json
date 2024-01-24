@@ -2256,12 +2256,34 @@
 			"id": 128,
 			"parameters":
 			{
-				"signaling_tally":
+				"who_im":
 				{
 					"group_id": 128,
 					"group_name": "RGB Tally",
 					"group_key": "rgb_tally",
 					"id": 0,
+					"name": "Who Im",
+					"key": "who_im",
+					"data_type": "int32",
+					"interpretation": "Custom: Set the Camera ID a.k.a Who Im. This is essential. Tally needs to know which Camera ID need to follow. Tally starts with 255.",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 1,
+							"max": 254,
+							"value": null
+						}
+					}
+				},
+				"signaling_tally":
+				{
+					"group_id": 128,
+					"group_name": "RGB Tally",
+					"group_key": "rgb_tally",
+					"id": 1,
 					"name": "Signaling tally",
 					"key": "signaling_tally",
 					"data_type": "int8",
@@ -2283,7 +2305,7 @@
 					"group_id": 128,
 					"group_name": "RGB Tally",
 					"group_key": "rgb_tally",
-					"id": 1,
+					"id": 2,
 					"name": "Set tally",
 					"key": "set_tally",
 					"data_type": "int8",
@@ -2313,7 +2335,7 @@
 					"group_id": 128,
 					"group_name": "RGB Tally",
 					"group_key": "rgb_tally",
-					"id": 2,
+					"id": 3,
 					"name": "Set tally color",
 					"key": "set_tally_color",
 					"data_type": "uInt8",
@@ -2363,12 +2385,34 @@
 			"id": 129,
 			"parameters":
 			{
-				"notify":
+				"who_im":
 				{
 					"group_id": 129,
 					"group_name": "Bluetooth",
 					"group_key": "bluetooth",
 					"id": 0,
+					"name": "Who Im",
+					"key": "who_im",
+					"data_type": "int32",
+					"interpretation": "Custom: Set the Camera ID a.k.a Who Im. This is essential. ESP needs to know which Camera ID need to follow. ESP starts with 255. Note: Same as rgb_tally command.",
+					"props":
+					{
+						"default":
+						{
+							"name": "Default",
+							"key": "default",
+							"min": 1,
+							"max": 254,
+							"value": null
+						}
+					}
+				},
+				"notify":
+				{
+					"group_id": 129,
+					"group_name": "Bluetooth",
+					"group_key": "bluetooth",
+					"id": 1,
 					"name": "Notify",
 					"key": "notify",
 					"data_type": "int8",
@@ -2390,7 +2434,7 @@
 					"group_id": 129,
 					"group_name": "Bluetooth",
 					"group_key": "bluetooth",
-					"id": 1,
+					"id": 2,
 					"name": "Disconnect",
 					"key": "disconnect",
 					"data_type": "void",
@@ -2403,7 +2447,7 @@
 					"group_id": 129,
 					"group_name": "Bluetooth",
 					"group_key": "bluetooth",
-					"id": 2,
+					"id": 3,
 					"name": "Connect",
 					"key": "connect",
 					"data_type": "uInt8",
@@ -2465,7 +2509,7 @@
 					"group_id": 129,
 					"group_name": "Bluetooth",
 					"group_key": "bluetooth",
-					"id": 3,
+					"id": 4,
 					"name": "Passcode",
 					"key": "passcode",
 					"data_type": "int32",
@@ -2487,7 +2531,7 @@
 					"group_id": 129,
 					"group_name": "Bluetooth",
 					"group_key": "bluetooth",
-					"id": 4,
+					"id": 5,
 					"name": "Clear pairing",
 					"key": "clear_pairing",
 					"data_type": "void",
